@@ -1,8 +1,15 @@
 let express = require('express');
 let api_routes = require('./routes/studentAPI.js');
 
+// Tell server to run the client web app (student sign in page) of the production build (in the dist directory)
+let path = require('path');
+
 // Create web application
 let app = express();
+
+let vueClientPath = path.join(__dirname, 'student-sign-in-client', 'dist');
+
+app.use(express.static(vueClientPath));
 
 // Handling JSON requests, convert data to Javascript format
 app.use(express.json());
